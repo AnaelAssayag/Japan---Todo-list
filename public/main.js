@@ -1,4 +1,4 @@
-var SpacebookApp = function() {
+var JapanApp = function() {
 
   var posts = [];
 
@@ -26,20 +26,30 @@ var fetch = function() {
     var source = $('#post-template').html();
     var template = Handlebars.compile(source);
     for (var i = 0; i < posts.length; i++) {
-      var newHTML = template(posts[i]);
-      console.log(newHTML);
+      var dataTemplate = posts[i];
+      dataTemplate["star_off_1"] = posts[i].priority < 1;
+      dataTemplate["star_off_2"] = posts[i].priority < 2;
+      dataTemplate["star_off_3"] = posts[i].priority < 3;
+      dataTemplate["star_off_4"] = posts[i].priority < 4;
+      dataTemplate["star_off_5"] = posts[i].priority < 5;
+
+
+      var newHTML = template(dataTemplate);
       $posts.append(newHTML);
       _renderComments(i)
+
     }
+
   }
+
 
   function addPost(newPost) {
     $.ajax({
       method:"POST",
       url:"/posts",
-      data:{ text: newPost, comments: [] },
+      data:{ text: newPost, comments: [], priority:0},
       success: function(data) {
-        posts.push({ text: newPost, comments: [] });
+        posts.push(data);
         _renderPosts();
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -111,17 +121,38 @@ var fetch = function() {
     }
   });
 };
+  var addPriority = function (starValue, postId){
+  $.ajax({
+    type: "POST",
+    url: "/posts/" + postId + "/priority",
+    data: {priority:starValue},
+    success: function (data) {
+      for(var i =0; i< posts.length; i++) {
+        if(posts[i]._id == postId) {
+          posts[i].priority = data.priority
+          _renderPosts();   
+     }
+    }
+   
+
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log(textStatus);
+    }
+  });
+}
 
   return {
     addPost: addPost,
     removePost: removePost,
     addComment: addComment,
     deleteComment: deleteComment,
+    addPriority: addPriority,
     fetch:fetch
   };
 };
 
-var app = SpacebookApp();
+var app = JapanApp();
 app.fetch();
 
 
@@ -179,6 +210,10 @@ $posts.on('click', '.remove-comment', function() {
   app.deleteComment(postIndex, commentIndex, postId, commentId);
 });
 
-$posts.on('click', '.add-photo', function(){
+$posts.on('click', '.rating-star', function(){
+  var postId = $(this).closest('.post').find('.remove-post').data().id;
+  var starValue = $(this).data().value;
 
+  app.addPriority(starValue, postId); 
 })
+

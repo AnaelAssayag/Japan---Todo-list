@@ -69,6 +69,19 @@ app.delete('/posts/:id/comments/:commentid', function(req, res){
   })
 })
 
+//6) add a priority on a step
+app.post('/posts/:id/priority', function(req, res){
+  var postId = req.params.id;
+  console.log(postId)
+  var priority = req.body.priority;
+  console.log(priority)
+
+  Post.findByIdAndUpdate(postId, {priority:priority}, {new:true}, function(error, result) {
+    if(error) throw error;
+    res.send(result);
+  })
+  });
+
 
 app.listen(8000, function() {
   console.log("what do you want from me! get me on 8000 ;-)");
