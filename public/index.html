@@ -27,7 +27,7 @@
         </div>
     </div>
     <script id="post-template" type="text/x-handlebars-template">
-        <div class="post"> {{text}}
+        <div class="post"  data-id="{{_id}}"> {{text}}
                 <div class="rating"> Priority
                         <span class="rating-star" data-value="1"><i class="fa fa-star{{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
                         </span>
@@ -43,7 +43,7 @@
     
             </div>
             <br> <a class="toggle-comments" href="#"> Comments </a>
-            <button type="button" class="btn btn-danger remove-post" data-id="{{_id}}">Remove Post</button>
+            <button type="button" class="btn btn-danger remove-post">Remove Post</button>
             <div class="comments-container">
                 <ul class="comments-list"></ul>
                 <input class="form-control name" type="text" placeholder="Name" />

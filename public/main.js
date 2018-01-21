@@ -170,7 +170,7 @@ var $posts = $(".posts");
 
 $posts.on('click', '.remove-post', function() {
   var index = $(this).closest('.post').index();
-  var postId = $(this).data().id;
+  var postId = $(this).closest('.post').data().id;
   app.removePost(index, postId);
 });
 
@@ -191,7 +191,7 @@ $posts.on('click', '.add-comment', function() {
 
   var postIndex = $(this).closest('.post').index();
   var newComment = { text: $comment.val(), user: $user.val() };
-  var postId = $(this).closest('.post').find('.remove-post').data().id;
+  var postId = $(this).closest('.post').data().id;
 
   app.addComment(newComment, postIndex, postId);
 
@@ -205,13 +205,13 @@ $posts.on('click', '.remove-comment', function() {
   var postIndex = $(this).closest('.post').index();
   var commentIndex = $(this).closest('.comment').index();
   var commentId = $(this).data().id;
-  var postId = $(this).closest('.post').find('.remove-post').data().id;
+  var postId = $(this).closest('.post').data().id;
 
   app.deleteComment(postIndex, commentIndex, postId, commentId);
 });
 
 $posts.on('click', '.rating-star', function(){
-  var postId = $(this).closest('.post').find('.remove-post').data().id;
+  var postId = $(this).closest('.post').data().id;
   var starValue = $(this).data().value;
 
   app.addPriority(starValue, postId); 
