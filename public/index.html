@@ -3,6 +3,7 @@
 
 <head>
     <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
     <link href="style.css" rel="stylesheet">
     <title></title>
 </head>
@@ -20,22 +21,36 @@
                     <div class="form-group">
                         <input class="form-control" type="text" id="postText" placeholder="Enter the step"/>
                     </div>
-                    <button type="button" id="addpost" class="btn btn-primary">Post</button>
-
+                    <button type="button" id="addpost" class="btn btn-primary" >Post</button>
                 </form>
             </div>
         </div>
     </div>
     <script id="post-template" type="text/x-handlebars-template">
-        <div class="post"> {{text}} <a class="toggle-comments" href="#"> Comments </a>
-            <button type="button" class="btn btn-danger remove-post" data-id="{{_id}}">Remove Post</button>
-            <div>111</div>
+        <div class="post"  data-id="{{_id}}"> {{text}}
+                <div class="rating"> Priority
+                        <span class="rating-star" data-value="1"><i class="fa fa-star{{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
+                        </span>
+                        <span class="rating-star" data-value="2"><i class="fa fa-star{{#if star_off_2}}-o{{/if}}" aria-hidden="true"></i>
+                        </span>
+                        <span class="rating-star" data-value="3"><i class="fa fa-star{{#if star_off_3}}-o{{/if}}" aria-hidden="true"></i>
+                        </span>
+                        <span class="rating-star" data-value="4"><i class="fa fa-star{{#if star_off_4}}-o{{/if}}" aria-hidden="true"></i>
+                        </span>
+                        <span class="rating-star" data-value="5"><i class="fa fa-star{{#if star_off_5}}-o{{/if}}" aria-hidden="true"></i>
+                        </span>
+                        <br>
+    
+            </div>
+            <br> <a class="toggle-comments" href="#"> Comments </a>
+            <button type="button" class="btn btn-danger remove-post">Remove Post</button>
             <div class="comments-container">
                 <ul class="comments-list"></ul>
                 <input class="form-control name" type="text" placeholder="Name" />
-                <input class="form-control comment" type="text" placeholder="Comment" />
-                <button type="button" class="btn btn-sm btn-primary add-comment">Post Comment</button>
-                <button type="button" class="btn btn-sm btn-primary add-photo">Add photo</button>
+                <input class="form-control comment" type="text" placeholder="Comment"/>
+  
+             <button type="button" class="btn btn-sm btn-primary add-comment">Post Comment</button>
+
 
             </div>
         </div>

@@ -13,7 +13,27 @@
 .comments-container {
     display: none;
 }
+
+.add-comment {
+    background-color: #FF3A4E;
+
+}
+
+.remove-comment{
+    background-color: #FF3A4E;
+}
+.remove-post{
+    background-color: #FF3A4E;
+
+}
+.rating-star{
+    font-size:24px
+}
+
+.fa-star{
+    color: #00878B
+}
 #addpost {
-    background-color: #EC4C52;
+    background-color: #FF3A4E;
     border: none
 }
