@@ -5,7 +5,7 @@ var multer  = require('multer');
 var upload = multer();
 
 
-mongoose.connect('mongodb://localhost/japanDB', function() {
+mongoose.connect(process.env.CONNECTION_STRING||'mongodb://localhost/japanDB', function() {
   console.log("DB connection established!!!");
 })
 
@@ -87,6 +87,4 @@ app.post('/posts/:id/priority', function(req, res){
 
   //7) Add photo
 
-app.listen(8000, function() {
-  console.log("what do you want from me! get me on 8000 ;-)");
-});
+app.listen(process.env.PORT || '8080');
