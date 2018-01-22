@@ -1,10 +1,10 @@
 {
-  "name": "spacebook-c2",
+  "name": "n",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,7 @@
     "mongoose": "^4.13.9",
     "multer": "^1.3.0",
     "nodemon": "^1.14.11"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
