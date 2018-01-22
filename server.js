@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var multer  = require('multer');
+var upload = multer();
 
 
 mongoose.connect('mongodb://localhost/japanDB', function() {
@@ -82,6 +84,8 @@ app.post('/posts/:id/priority', function(req, res){
   })
   });
 
+
+  //7) Add photo
 
 app.listen(8000, function() {
   console.log("what do you want from me! get me on 8000 ;-)");
